@@ -22,11 +22,13 @@
   <div class="container">
     <div id="calendar"></div>
     <!-- Timeblocks go here -->
+
   </div>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
   <script>
+    function simpleCalendar() {
     $(document).ready(function () {
       let momentVar = moment().format('dddd, MMMM Do, YYYY h:mm a');
       let workHours = ["9 a.m.", "10 a.m.", "11 a.m.", "12 p.m.", "1 p.m.", "2 p.m.", "3 p.m.", "4 p.m.", "5 p.m."]
@@ -37,6 +39,7 @@
         return currentDay;
       }
 
+      currentDay();
 
       let row;
       let timeCol;
@@ -44,12 +47,12 @@
       //THEN I am presented with timeblocks for standard business hours
       for (i = 0; i < workHours.length; i++) {
         console.log(workHours[i]);
-        let row = $("<div>").addClass("row")
-        let timeCol = $("<text-area>").text(workHours[i]);
-        let inputCol = $("<input>").attr("placeholder", "Enter note here").addClass("toDo-input");
+        let row = $("<div>").addClass("row");
+        let timeCol = $("<text-area>").text(workHours[i]).addClass("hour");
+        let inputCol = $("<input>").attr("placeholder", "Enter note here").addClass("toDo-input time-block");
         saveBtn = $("<button>").addClass("btn btn-primary saveBtn").text("save");
-        $(row).append(timeCol)
-        $("#calendar").append(row).append(timeCol).append(inputCol).append(saveBtn);
+        $(row).append(timeCol).append(inputCol).append(saveBtn);
+        $("#calendar").append(row);
       }
 
       //for loop to add id's to input fields
@@ -75,7 +78,7 @@
       }
       addIdToSaveBtn();
 
-      //save button click event
+      
 
       let saveBtnId1 = $("#saveBtn-Id-1");
       let saveBtnId2 = $("#saveBtn-Id-2");
@@ -97,9 +100,10 @@
       let toDoInput8 = $("#input-field-8");
       let toDoInput9 = $("#input-field-9");
 
-      let toDoArray = [];
+   
       let storedInput;
 
+      //click events for each save button 
 
       $(saveBtnId1).on("click", function (event) {
         event.preventDefault();
@@ -182,83 +186,95 @@
       let savedInput9 = (localStorage.getItem("toDo9"));
       toDoInput9.val(savedInput9);
 
-    })
 
+      // start if else statements to show past, present, future events
 
-    // currentDay();
-
-    let now = new Date().getHours();
-    if (now > 9) {
+      let now = new Date().getHours();
+    console.log(now);
+    if (now > 8) {
       $("#input-field-0").addClass("past");
-    } else if (now >= 9 && now < 10) {
+    } else if (now >= 8 && now < 9) {
       $("#input-field-0").addClass("present");
-    } else if (now < 9) {
+    } else if (now < 8) {
       $("#input-field-0").addClass("future");
     }
 
-    if (now > 10) {
+    if (now > 9) {
       $("#input-field-1").addClass("past");
-    } else if (now >= 10 && now < 11) {
+    } else if (now >= 9 && now < 10) {
       $("#input-field-1").addClass("present");
-    } else if (now < 10) {
+    } else if (now < 9) {
       $("#input-field-1").addClass("future");
     }
 
-    if (now > 11) {
+    if (now > 10) {
       $("#input-field-2").addClass("past");
-    } else if (now >= 11 && now < 12) {
+    } else if (now >= 10 && now < 11) {
       $("#input-field-2").addClass("present");
-    } else if (now < 11) {
+    } else if (now < 10) {
       $("#input-field-2").addClass("future");
     }
 
-    if (now > 12) {
+    if (now > 11) {
       $("#input-field-3").addClass("past");
-    } else if (now >= 12 && now < 13) {
+    } else if (now >= 11 && now < 12) {
       $("#input-field-3").addClass("present");
-    } else if (now < 12) {
+    } else if (now < 11) {
       $("#input-field-3").addClass("future");
     }
 
-    if (now > 13) {
+    if (now > 12) {
       $("#input-field-4").addClass("past");
-    } else if (now >= 13 && now < 14) {
+    } else if (now >= 12 && now < 13) {
       $("#input-field-4").addClass("present");
-    } else if (now < 13) {
+    } else if (now < 12) {
       $("#input-field-4").addClass("future");
     }
 
-    if (now > 14) {
+    if (now > 13) {
       $("#input-field-5").addClass("past");
-    } else if (now >= 14 && now < 15) {
+    } else if (now >= 13 && now < 14) {
       $("#input-field-5").addClass("present");
-    } else if (now < 14) {
+    } else if (now < 13) {
       $("#input-field-5").addClass("future");
     }
 
-    if (now > 15) {
+    if (now > 14) {
       $("#input-field-6").addClass("past");
-    } else if (now >= 15 && now < 16) {
+    } else if (now >= 14 && now < 15) {
       $("#input-field-6").addClass("present");
-    } else if (now < 15) {
+    } else if (now < 14) {
       $("#input-field-6").addClass("future");
     }
 
-    if (now > 16) {
+    if (now > 15) {
       $("#input-field-7").addClass("past");
-    } else if (now >= 16 && now < 17) {
+    } else if (now >= 15 && now < 16) {
       $("#input-field-7").addClass("present");
-    } else if (now < 16) {
+    } else if (now < 15) {
       $("#input-field-7").addClass("future");
     }
 
-    if (now > 17) {
+    if (now > 16) {
       $("#input-field-8").addClass("past");
-    } else if (now >= 17 && now < 18) {
+    } else if (now >= 16 && now < 17) {
       $("#input-field-8").addClass("present");
-    } else if (now < 17) {
+    } else if (now < 16) {
       $("#input-field-8").addClass("future");
     }
+
+    if (now > 17) {
+      $("#input-field-9").addClass("past");
+    } else if (now >= 17 && now < 18) {
+      $("#input-field-9").addClass("present");
+    } else if (now < 17) {
+      $("#input-field-9").addClass("future");
+    }
+
+    });
+
+  }
+  simpleCalendar();
   </script>
 </body>
 

@@ -4,7 +4,7 @@ body {
   line-height: 1;
 }
 
-textarea{
+textarea {
   background: transparent;
   border: none;
   resize: none;
@@ -28,18 +28,23 @@ textarea{
 .time-block{
   text-align: center;
   border-radius: 15px;
+  width: 75%;
 }
 
 .row {
   white-space: pre-wrap;
   height: 80px;
   border-top: 1px solid white;;
+  text-align: center;
 }
 
 .hour {
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
+  text-align: center;
+  width: 100px;
+  padding: 10px;
 }
 
 .past {
